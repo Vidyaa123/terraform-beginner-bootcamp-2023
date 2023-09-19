@@ -88,5 +88,40 @@ When using 'Init', the code within 'Init' dies not rerun when the workspace is r
 https://www.gitpod.io/docs/configure/workspaces/tasks
 
 
+## Setting up Project Root Env Var
+
+env command to show all environment variables
+
+`env | grep gitpod (to filter)`
+
+'env | terraform-beginner-bootcamp-2023`
+
+`Echo $env_var_name`
+
+### Diff methods to set en var
+
+1. In a bash script set the env var and cd into the env var like
+ 
+```
+PROJECT_ROOT =‘/workspace/terraform-beginner-bootcamp-2023’
+
+cd $PROJECT_ROOT
+```
+
+2. Use export to set the env var in terminal
+
+`
+Export PROJECT_ROOT =‘/workspace/terraform-beginner-bootcamp-2023’ `
+
+To unset use `unset PROJECT_ROOT`
+
+3. When a new terminal is opened in vscode the env vars do not persists.
+
+In gitpod you can persist the env var using
+
+`gp env PROJECT_ROOT=‘/workspace/terraform-beginner-bootcamp-2023’`
+
+4. Can also be set in gitpod.yml file, but for not non-sensisitve data.
+
 
 

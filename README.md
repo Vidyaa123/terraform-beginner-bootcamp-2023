@@ -124,4 +124,20 @@ In gitpod you can persist the env var using
 4. Can also be set in gitpod.yml file, but for not non-sensisitve data.
 
 
+### Refactor AWS CLI
 
+install AWS CLI through [./bin/install_aws_cli]
+
+
+We can check if AWS credentials are configured correctly using
+```sh
+aws sts get-caller-identity
+```
+
+AWS Credentials can be set using AWS Configure, but not recommended
+
+[Env variables to configure AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+Create a user in IAM and add to Admin(Admin access to all services) user group. Create User credentials and add to env vars
+
+Add through `export` or `gp env` (to persist) the env vars

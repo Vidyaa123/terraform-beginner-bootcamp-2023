@@ -124,7 +124,7 @@ In gitpod you can persist the env var using
 4. Can also be set in gitpod.yml file, but for not non-sensisitve data.
 
 
-### Refactor AWS CLI
+## Refactor AWS CLI
 
 install AWS CLI through [./bin/install_aws_cli]
 
@@ -141,3 +141,53 @@ AWS Credentials can be set using AWS Configure, but not recommended
 Create a user in IAM and add to Admin(Admin access to all services) user group. Create User credentials and add to env vars
 
 Add through `export` or `gp env` (to persist) the env vars
+
+
+## Terraform Random Bucket Name Generation
+
+### Terraform Registry
+Terraform registry contains the providers and modules in this url[Terraform Registry](Registry.terraform.io)
+-- Providers are direct interfaces to the API
+-- Modules are templates created by using code which can be shred and re-used
+
+We will be using a [random provider] (https://registry.terraform.io/providers/hashicorp/random/3.5.1) in this project 
+
+main.tf is the top level module
+
+### Terraform Init
+Run terraform Init creates a .terraform file and .terraform.lock.hcl
+This downloads the binaries of the providers that will be used in the project
+Terraform providers are written in Go and the terraform provider file is downloaded into .terraform folder
+This folder doesnt **need to be commited**. Hence ignored in .gitignore
+
+### terraform plan
+
+`terraform plan`
+
+This command shows the state of the infrastructure and any changeset.
+
+### Terraform Apply
+
+`terraform apply` -- this command will run the plan and and execute the changeset
+or 
+
+`terraform apply --auto-approve` -- this command to automatically approve the apply
+
+### Terraform Lock files
+
+`.terraform.lock.hcl` contains the locked versioning for the providers or modulues that should be used with this project.
+
+The Terraform Lock File **should be committed**
+
+#### Terraform State Files
+
+`.terraform.tfstate` has the current state of your infrastructure
+
+This file **should not be commited**.
+This file contains sensitive data and hence at risk of losing state of infrastructure
+
+#### Output the bucket name
+Prints the bucket name
+`$ terraform output random_bucket_name
+"v0TmpsGrE8c3Z8oc"
+`

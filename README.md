@@ -160,7 +160,7 @@ This downloads the binaries of the providers that will be used in the project
 Terraform providers are written in Go and the terraform provider file is downloaded into .terraform folder
 This folder doesnt **need to be commited**. Hence ignored in .gitignore
 
-### terraform plan
+### Terraform plan
 
 `terraform plan`
 
@@ -179,15 +179,56 @@ or
 
 The Terraform Lock File **should be committed**
 
-#### Terraform State Files
+### Terraform State Files
 
 `.terraform.tfstate` has the current state of your infrastructure
 
 This file **should not be commited**.
 This file contains sensitive data and hence at risk of losing state of infrastructure
 
-#### Output the bucket name
+### Output the bucket name
 Prints the bucket name
 `$ terraform output random_bucket_name
 "v0TmpsGrE8c3Z8oc"
 `
+
+## Simple S3 bucket
+
+Add the provider to main.tf
+
+```sh
+aws = {
+      source = "hashicorp/aws"
+      version = "5.17.0"
+    }
+
+```
+
+Create an s3 bucket with the randamly generated bucket name from earlier commit
+
+```sh
+resource "aws_s3_bucket" "example" {
+  bucket = random_string.bucket_name.result
+}
+```
+
+
+### Terraform destroy
+
+destroys all the resources created
+
+`terraform destroy`
+
+### s3 bucket naming rules
+
+check if the randomly generated bucket name adheres to s3 naming convention.
+Alter the code to make all charcters lower and increase the length of the random string
+
+```sh
+resource "random_string" "bucket_name" {
+  length = 32
+  lower = true
+  upper = false
+  special = false
+}
+```

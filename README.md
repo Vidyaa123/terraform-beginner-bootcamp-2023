@@ -218,3 +218,17 @@ resource "aws_s3_bucket" "example" {
 destroys all the resources created
 
 `terraform destroy`
+
+### s3 bucket naming rules
+
+check if the randomly generated bucket name adheres to s3 naming convention.
+Alter the code to make all charcters lower and increase the length of the random string
+
+```sh
+resource "random_string" "bucket_name" {
+  length = 32
+  lower = true
+  upper = false
+  special = false
+}
+```

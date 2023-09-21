@@ -232,3 +232,49 @@ resource "random_string" "bucket_name" {
   special = false
 }
 ```
+
+## Terraform cloud
+By default, Terraform stores its state in the file terraform.tfstate in local filesystem. This works well for personal projects, but working with Terraform in a team, use of a local file makes Terraform usage complicated because each user must make sure they always have the latest state data before running Terraform and make sure that nobody else runs Terraform at the same time.
+The best way to do this is by running Terraform in a remote environment with shared access to state. Remote state solves those challenges. Remote state is simply storing that state file remotely, rather than on your local filesystem. With a single state file stored remotely, teams can ensure they always have the most up to date state file.
+
+[Terraform Overview](https://medium.com/devops-mojo/terraform-remote-states-overview-what-is-terraform-remote-state-storage-introduction-936223a0e9d0)
+
+
+
+## Connect to Terraform Cloud backend
+
+Create a project and workspace in terraform cloud
+use Cli driven run to connect the remote state.
+Use the code provided and add it to main.tf
+`
+cloud {
+    organization = "xxxxx"
+
+    workspaces {
+      name = "xxxxxxx"
+    }
+  }`
+
+  Apply `terraform init` and you will end up in a prompt saying not loggied in to terraform cloud
+  so type `terraform login` and type 'yes to proceed at prompt
+  It will ask for terraform token
+
+use this [link](https://app.terraform.io/app/settings/tokens?source=terraform-login) to generate a token.
+
+
+Then create a file using the commands in the terminal 
+ `touch /home/gitpod/.terraform.d/credentials.tfrc.json`
+ `open /home/gitpod/.terraform.d/credentials.tfrc.json`
+
+ copy the code into the credentials file and replace the generated token into this code 
+ ```
+ {
+  "credentials": {
+    "app.terraform.io": {
+      "token": "F2aaIh5eOhAYcc.atlasv1.7775NOPEzo82qN88elI0qgbcyu3Jr0N4rluUqzIHEgsNf5uRxPfJ7DiV3QzwEXoNOPE"
+    }
+  }
+}
+```
+
+Then enter terraform init, plan and apply to to see the record state in terraform cloud

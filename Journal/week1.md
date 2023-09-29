@@ -17,3 +17,19 @@ PROJECT_ROOT
 ```
 
 [Standard Module Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure)
+
+## Setting up Variables
+
+There ar two types of variables which we can setup in Terraform cloud
+- Environment variables
+We setup AWS Region, key and access key here in the environemtn variables
+- Terraform Variables
+All other variables are set here
+
+There are coupke of ways to setup variables.
+1. Set up the variable in terraform.tfvars
+2. Pass the variable in the cmd line as
+` terraform plan -var variable_name='value'`
+
+Since the terraform.tfvars is not commited, the value is stored in temporary example file and passed to the terraform.tfvars file when the project is initiated.
+`cp $PROJECT_ROOT/terraform.tfvars.example $PROJECT_ROOT/terraform.tfvars`

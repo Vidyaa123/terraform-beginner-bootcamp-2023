@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 
-# Check if the TERRAFORM_CLOUD_TOKEN environment variable is set
+# Define target directory and file
+TARGET_DIR="/home/gitpod/.terraform.d"
+TARGET_FILE="${TARGET_DIR}/credentials.tfrc.json"
+
+# Check if TERRAFORM_CLOUD_TOKEN is set
 if [ -z "$TERRAFORM_CLOUD_TOKEN" ]; then
-  echo "Error: TERRAFORM_CLOUD_TOKEN environment variable is not set."
-  exit 1
+    echo "Error: TERRAFORM_CLOUD_TOKEN environment variable is not set."
+    exit 1
 fi
 
-# Define the target file path
-tfrc_file="/home/gitpod/.terraform.d/credentials.tfrc.json"
+# Check if directory exists, if not, create it
+if [ ! -d "$TARGET_DIR" ]; then
+    mkdir -p "$TARGET_DIR"
+fi
 
-# Create the credentials.tfrc.json file
-cat <<EOF > "$tfrc_file"
+# Generate credentials.tfrc.json with the token
+cat > "$TARGET_FILE" << EOF
 {
   "credentials": {
     "app.terraform.io": {
@@ -20,4 +26,4 @@ cat <<EOF > "$tfrc_file"
 }
 EOF
 
-echo "Credentials saved to $tfrc_file"
+echo "${TARGET_FILE} has been generated."

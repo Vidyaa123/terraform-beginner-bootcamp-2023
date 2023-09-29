@@ -33,3 +33,18 @@ There are coupke of ways to setup variables.
 
 Since the terraform.tfvars is not commited, the value is stored in temporary example file and passed to the terraform.tfvars file when the project is initiated.
 `cp $PROJECT_ROOT/terraform.tfvars.example $PROJECT_ROOT/terraform.tfvars`
+
+
+## Configuration Drift
+
+### fix when the tf state file is deleted or missing
+This can be fixed by importing the resources. This does not work for all resources. Check documentartion for which resource support import
+[import s3 resources](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+`terraform import aws_s3_bucket.bucket bucket-name`
+
+### fix when the resources are accidently deleted
+using tf plan this cccan be fixed
+
+### removing random provider
+
+the random provider is removed and the var settings are changed

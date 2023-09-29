@@ -7,7 +7,7 @@
   - [Week 0 Journal](/Journal/Week0.md)
   - ![Week 0 Progress Architecture](/images/week0-architecture.png)
 ### [Week 1]()
-  - [Week 1 Journal](/Journal/Week1.md)
+  - [Week 1 Journal](/Journal/week1.md)
   - ![Week 1 Progress Architecture](/images/week1-architecture.png)
 ### [Week 2]()
   - [Week 2 Journal](/Journal/Week2.md)

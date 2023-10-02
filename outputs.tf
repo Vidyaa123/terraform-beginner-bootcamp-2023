@@ -1,3 +1,4 @@
-output "bucket_name"{
-    value = aws_s3_bucket.Terra_Clicks_Bucket.bucket
+output "bucket_name" {
+  value = module.terrahouse_aws.bucket_name
 }
+

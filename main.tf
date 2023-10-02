@@ -1,13 +1,10 @@
+terraform{
 
+}
 
-
-
-resource "aws_s3_bucket" "Terra_Clicks_Bucket" {
-  bucket = var.bucket_name
-
-    tags = {
-    UserUid = var.user_uid
-    
-  }
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uid = var.user_uid
+  bucket_name = var.bucket_name
 }
 

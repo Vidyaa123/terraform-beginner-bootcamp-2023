@@ -76,3 +76,30 @@ module "terrahouse_aws" {
   source = "./modules/terrahouse_aws"
 }
 ```
+
+
+## Static website hosting
+[Static Website hosting](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration)
+
+Add the website configuration in the resource to add static website hosting as indicated in the documentation
+To output the website endpoint add the following endpoint configs in output files
+
+[Website Endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration#attribute-reference)
+
+
+## Working with Paths in terraform
+
+
+### Path Variable
+
+In terraform there is a special variable called `path` that allows us to reference local paths:
+- path.module = get the path for the current module
+- path.root = get the path for the root module
+[Special Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+  key    = "index.html"
+  source = "${path.root}/public/index.html"
+}

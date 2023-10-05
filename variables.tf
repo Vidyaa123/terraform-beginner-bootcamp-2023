@@ -18,3 +18,7 @@ variable "error_html_filepath" {
   description = "The file path for error.html"
   type        = string
 }
+
+variable "content_version" {
+  type        = number
+}

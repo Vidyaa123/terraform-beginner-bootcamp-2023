@@ -11,7 +11,7 @@ resource "aws_cloudfront_origin_access_control" "default" {
 }
 
 locals {
-  s3_origin_id = "myS3Origin"
+  s3_origin_id = "MyS3Origin"
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {

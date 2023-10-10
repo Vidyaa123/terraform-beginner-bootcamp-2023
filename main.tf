@@ -1,5 +1,18 @@
 terraform{
+#backend "remote" {
+  #  hostname = "app.terraform.io"
+  #  organization = "ExamPro"
 
+  #  workspaces {
+  #    name = "terra-house-1"
+  #  }
+  # }
+  cloud {
+   organization = "Vidyaa"
+   workspaces {
+     name = "Terra-Clicks"
+   }
+  }
 }
 
 module "terrahouse_aws" {

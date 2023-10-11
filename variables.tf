@@ -1,5 +1,5 @@
 
-variable "user_uid" {
+variable "user_uuid" {
   description = "Unique identifier for a user"
   type        = string
 }

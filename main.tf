@@ -56,11 +56,11 @@ module "home_cakes_hosting" {
 }
 
 resource "terratowns_home" "home_cakes" {
-  name = "Cakes!"
+  name = "A.R. Rahman Live in Concert"
   description = <<DESCRIPTION
-My take on tiered Black forest cake!!!! 
+Music Madness!!
 DESCRIPTION
   domain_name = module.home_cakes_hosting.domain_name
-  town = "missingo"
+  town = "melomaniac-mansion"
   content_version = var.cakes.content_version
 }

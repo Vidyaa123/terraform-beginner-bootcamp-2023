@@ -31,4 +31,3 @@ DESCRIPTION
   domain_name = "3fdq3gz.cloudfront.net"
   town = "gamers-grotto"
   content_version = 1
-}

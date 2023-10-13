@@ -5,15 +5,22 @@ terraform{
       version = "1.0.0"
     }
   }
-}
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
-  user_uuid = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+# backend "remote" {
+#   hostname = "app.terraform.io"
+#   organization = "Vidyaa"
+
+#   workspaces {
+#     name = "Terra-Clicks"
+#   }
+# }
+
+cloud {
+  organization = "Vidyaa"
+  workspaces {
+    name = "Terra-Clicks"
+  }
+}
 }
 
 provider "terratowns" {
@@ -22,13 +29,38 @@ provider "terratowns" {
   token = var.terratowns_access_token
 
 }
+
+module "home_snakes_hosting" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.snakes.public_path
+  content_version = var.snakes.content_version
+}
+
 resource "terratowns_home" "home" {
   name = "How to play Snakes & Ladder!"
   description = <<DESCRIPTION
-One hundred squares full of traps and tricks… Roll the dice and try your luck! Ladders will take you up but Snakes will take you down! 
+One hundred squares full of traps and tricks… Roll the dice and try your luck! 
+Ladders will take you up but Snakes will take you down! 
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
-  #  domain_name = "3fsfsfs34.cloudfront.net"
+  domain_name = module.home_snakes_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.snakes.content_version
+}
+# Secound house resource
+module "home_cakes_hosting" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.cakes.public_path
+  content_version = var.cakes.content_version
+}
+
+resource "terratowns_home" "home_cakes" {
+  name = "Cakes!"
+  description = <<DESCRIPTION
+My take on tiered Black forest cake!!!! 
+DESCRIPTION
+  domain_name = module.home_cakes_hosting.domain_name
+  town = "missingo"
+  content_version = var.cakes.content_version
 }

@@ -7,7 +7,7 @@ output "website_endpoint" {
 }
 
 
-output "cloudfront_url" {
+output "domain_name" {
   value = aws_cloudfront_distribution.s3_distribution.domain_name
 }
 

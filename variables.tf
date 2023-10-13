@@ -1,13 +1,23 @@
 
-variable "user_uuid" {
+variable "teacherseat_user_uuid" {
   description = "Unique identifier for a user"
   type        = string
 }
 
-variable "bucket_name" {
-  description = "The name of the S3 bucket"
+
+variable "terratowns_endpoint" {
+  description = "Unique identifier for a user"
   type        = string
 }
+variable "terratowns_access_token" {
+  description = "Unique identifier for a user"
+  type        = string
+}
+
+# variable "bucket_name" {
+#   description = "The name of the S3 bucket"
+#   type        = string
+# }
 
 variable "index_html_filepath" {
   description = "The file path for index.html"

@@ -1,5 +1,11 @@
 terratowns_endpoint= "https://terratowns.cloud/api"
-index_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/index.html"
-error_html_filepath="/workspace/terraform-beginner-bootcamp-2023/public/error.html"
-assets_path="/workspace/terraform-beginner-bootcamp-2023/public/assets/"
-content_version=5
+snakes = {
+    public_path="/workspace/terraform-beginner-bootcamp-2023/public/snakes" 
+    content_version = 2    
+}
+
+terratowns_endpoint="https://terratowns.cloud/api"
+cakes = {
+  public_path = "/workspace/terraform-beginner-bootcamp-2023/public/cakes"
+  content_version = 1
+}
